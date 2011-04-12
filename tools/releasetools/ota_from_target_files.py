@@ -983,7 +983,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("**: :__ `.  .' : :' '_.': ,. :' .; :' '_.'' .; :**");
   script.Print("**`.__.':_,._; :_;`.__.':_;:_;`.__.'`.__.'`.__.'**");
   script.Print("**************************************************");
-  script.Print("*                By:-TeamAEX                     *");
+  script.Print("**                By:-TeamAEX                   **");
+  script.Print("**        S4 version:-Buff99 / JDCTeam          **");
   script.Print("**************************************************");
   script.Print(" ")
   script.AppendExtra("sleep (2);")
