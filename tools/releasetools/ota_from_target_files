@@ -572,7 +572,22 @@ set_stage("%(bcb_dev)s", "3/3");
 reboot_now("%(bcb_dev)s", "recovery");
 else if get_stage("%(bcb_dev)s") == "3/3" then
 """ % bcb_dev)
-
+  
+  script.Print("   __  ____  __   ____  ____ ")
+  script.Print(" _(  )(  __)(  ) (_  _)(  __)")
+  script.Print("/ \) \ )  _)/ (_/\ )(   ) _)")
+  script.Print("\____/(__)  \____/(__) (____)")
+  script.Print("")
+  script.Print(" ____  ____  _  _   ___  __   __ _ ")
+  script.Print("(    \(  __)/ )( \ / __)/  \ (  ( )")
+  script.Print(" ) D ( ) _) \ \/ /( (__(  O )/    /")
+  script.Print("(____/(____) \__/  \___)\__/ \_)__)")
+  script.Print("")
+  script.Print("Optimized SlimLP 5.1 builds")
+  script.Print("")
+  script.Print("Lead Developer: Angelcalibur")
+  script.Print("")
+  script.AppendExtra("sleep (2);")
   script.AppendExtra("ifelse(is_mounted(\"/system\"), unmount(\"/system\"));")
   device_specific.FullOTA_InstallBegin()
 
@@ -587,20 +602,6 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     script.Unmount("/system")
 
   system_progress = 0.75
-
-  script.Print("                    _____________________ ")
-  script.Print("                   /     www.slimroms.eu |")
-  script.Print("                  /                      |")
-  script.Print("                 /    ___________________|")
-  script.Print("                /    /    ___             ")
-  script.Print("               /    / ___/   \            ")
-  script.Print("              /    / /   \___/____   ____ ")
-  script.Print("             /    /  |   |___/    \_/    |")
-  script.Print(" ___________/    /   |   |   |           |")
-  script.Print("|               /    |   |   |   |   |   |")
-  script.Print("|              /     |   |   |   |   |   |")
-  script.Print("|_____________/      \___^___^___^___^___/")
-  script.Print(" ")
 
   if OPTIONS.wipe_user_data:
     system_progress -= 0.1
