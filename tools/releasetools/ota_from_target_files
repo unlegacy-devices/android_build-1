@@ -689,12 +689,12 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.WriteRawImage("/boot", "boot.img")
 
   script.ShowProgress(0.2, 10)
-  script.Print("Installation complete!");
   device_specific.FullOTA_InstallEnd()
 
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
 
+  script.Print("Installation complete!");
   script.UnmountAll()
 
   if OPTIONS.wipe_user_data:
