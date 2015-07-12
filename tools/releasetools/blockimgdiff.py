@@ -27,12 +27,6 @@ import sys
 import threading
 import tempfile
 
-try:
-  from backports import lzma
-except ImportError:
-  lzma = None
-  pass
-
 from rangelib import *
 
 __all__ = ["EmptyImage", "DataImage", "BlockImageDiff"]
@@ -196,13 +190,12 @@ class Transfer(object):
 # original image.
 
 class BlockImageDiff(object):
-  def __init__(self, tgt, src=None, threads=None, version=2, use_lzma=False):
+  def __init__(self, tgt, src=None, threads=None, version=2):
     if threads is None:
       threads = multiprocessing.cpu_count() // 2
       if threads == 0: threads = 1
     self.threads = threads
     self.version = version
-    self.use_lzma = use_lzma
 
     assert version in (1, 2)
 
@@ -416,15 +409,7 @@ class BlockImageDiff(object):
     print("Reticulating splines...")
     diff_q = []
     patch_num = 0
-
-    if lzma and self.use_lzma:
-        open_patch = lzma.open
-        new_file = ".new.dat.xz"
-    else:
-        open_patch = open
-        new_file = ".new.dat"
-
-    with open_patch(prefix + new_file, "wb") as new_f:
+    with open(prefix + ".new.dat", "wb") as new_f:
       for xf in self.transfers:
         if xf.style == "zero":
           pass
