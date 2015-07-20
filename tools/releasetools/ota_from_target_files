@@ -572,8 +572,7 @@ set_stage("%(bcb_dev)s", "3/3");
 reboot_now("%(bcb_dev)s", "recovery");
 else if get_stage("%(bcb_dev)s") == "3/3" then
 """ % bcb_dev)
-
-  script.AppendExtra("run_program(\"/sbin/busybox", "echo", "6", ">", "/sys/class/sec/led/led_pattern\")") # Glowing blue LED
+  
   script.Print("   __  ____  __   ____  ____ ")
   script.Print(" _(  )(  __)(  ) (_  _)(  __)")
   script.Print("/ \) \ )  _)/ (_/\ )(   ) _)")
@@ -617,9 +616,6 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   system_items = ItemSet("system", "META/filesystem_config.txt")
   script.ShowProgress(system_progress, 0)
 
-  script.AppendExtra("run_program(\"/sbin/busybox", "echo", "0", ">", "/sys/class/sec/led/led_pattern\")") # Disable glowing blue LED
-  script.AppendExtra("run_program(\"/sbin/busybox", "echo", "255", ">", "/sys/class/leds/led_r/brightness\")") # Enable red LED - Installation started
-
   if block_based:
     # Full OTA is done as an "incremental" against an empty source
     # image.  This has the effect of writing new data from the package
@@ -634,15 +630,10 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
     script.AppendExtra("run_program(\"/tmp/install/bin/format.sh\");")
     script.Print("Mounting /system...");
     script.Mount("/system")
-    script.AppendExtra("run_program(\"/sbin/busybox", "echo", "2", ">", "/sys/class/sec/led/led_pattern\")") # Enable glowing red LED - Copying files
     script.Print("Installing...");
     if not has_recovery_patch:
       script.UnpackPackageDir("recovery", "/system")
     script.UnpackPackageDir("system", "/system")
-    script.AppendExtra("run_program(\"/sbin/busybox", "echo", "0", ">", "/sys/class/sec/led/led_pattern\")") # Disable glowing red LED
-    # Enable yellow LED - installation almost complete #
-    script.AppendExtra("run_program(\"/sbin/busybox", "echo", "255", ">", "/sys/class/leds/led_r/brightness\")")
-    script.AppendExtra("run_program(\"/sbin/busybox", "echo", "255", ">", "/sys/class/leds/led_g/brightness\")")
     script.Print("Making symlinks...");
     symlinks = CopyPartitionFiles(system_items, input_zip, output_zip)
     script.MakeSymlinks(symlinks)
@@ -703,10 +694,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   if OPTIONS.extra_script is not None:
     script.AppendExtra(OPTIONS.extra_script)
 
-  script.AppendExtra("run_program(\"/sbin/busybox", "echo", "0", ">", "/sys/class/leds/led_r/brightness\")") # Disable red LED, leave green ON - Installation complete
   script.Print("Installation complete!");
   script.UnmountAll()
-  # LED status reset at device's reboot
 
   if OPTIONS.wipe_user_data:
     script.ShowProgress(0.1, 10)
