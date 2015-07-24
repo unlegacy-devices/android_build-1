@@ -1664,12 +1664,7 @@ ifneq ($(recovery_fstab),)
 # OTA update package
 
 today := $(shell date -u +%Y%m%d)
-name := OptimizedCM-12.1-$today-$(TARGET_DEVICE)
-ifeq ($(TARGET_BUILD_TYPE),debug)
-  INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/$name-debug.zip
-else
-  INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/$name.zip
-endif
+INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/OptimizedCM-12.1-$today-jflte.zip
 
 $(INTERNAL_OTA_PACKAGE_TARGET): KEY_CERT_PAIR := $(DEFAULT_KEY_CERT_PAIR)
 
