@@ -203,11 +203,11 @@ ifneq ($(shell echo '$(java_version_str)' | grep -i openjdk),)
 $(info ************************************************************)
 $(info You are attempting to build with an unsupported JDK.)
 $(info $(space))
-$(info You use OpenJDK but only Sun/Oracle JDK is supported.)
+$(info You use OpenJDK but only Oracle JDK is supported.)
 $(info Please follow the machine setup instructions at)
 $(info $(space)$(space)$(space)$(space)https://source.android.com/source/download.html)
 $(info ************************************************************)
-endif # java version is not Sun Oracle JDK
+endif # java version is not Oracle JDK
 endif # if requires_openjdk
 
 # Check for the correct version of javac
