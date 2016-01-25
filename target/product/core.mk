@@ -49,6 +49,7 @@ PRODUCT_PACKAGES += \
     QuickSearchBox \
     Settings \
     SharedStorageBackup \
+    Snap \
     Telecom \
     TeleService \
     VpnDialogs \
