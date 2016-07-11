@@ -120,7 +120,12 @@ def BuildVerityMetadata(image_size, verity_metadata_path, root_hash, salt,
                         block_device, signer_path, key)
   print(cmd)
   runcmd = ["system/extras/verity/build_verity_metadata.py", image_size, verity_metadata_path, root_hash, salt, block_device, signer_path, key];
-  sp = subprocess.Popen(runcmd)
+  if verity_key_password is not None:
+    sp = subprocess.Popen(runcmd, stdin=subprocess.PIPE)
+    sp.communicate(verity_key_password)
+  else:
+    sp = subprocess.Popen(runcmd)
+
   sp.wait()
 
   if sp.returncode != 0:

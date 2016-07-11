@@ -481,8 +481,21 @@ def BuildBootableImage(sourcedir, fs_config_file, info_dict=None):
     cmd.extend([path, img.name,
                 info_dict["verity_key"] + ".pk8",
                 info_dict["verity_key"] + ".x509.pem", img.name])
-    p = Run(cmd)
-    p.communicate()
+    verity_key_password = None
+
+    if verity_key and os.path.exists(verity_key+".pk8") and kernel_pagesize > 0:
+      verity_key_passwords = {}
+      verity_key_passwords.update(PasswordManager().GetPasswords(verity_key.split()))
+      verity_key_password = verity_key_passwords[verity_key]
+
+    if verity_key_password is not None:
+      verity_key_password += "\n"
+      p = Run(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+      p.communicate(verity_key_password)
+    else:
+      p = Run(cmd)
+      p.communicate()
+
     assert p.returncode == 0, "boot_signer of %s image failed" % path
 
   # Sign the image if vboot is non-empty.
