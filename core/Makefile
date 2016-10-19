@@ -1866,7 +1866,7 @@ ifneq ($(recovery_fstab),)
 # OTA update package
 
 TODAY := $(shell date -u +%Y%m%d)
-NAME := OptimizedCM-13-$(TODAY)-$(TARGET_DEVICE)
+NAME := OptimizedCM-13.0-$(TODAY)-$(TARGET_DEVICE)-SideFINAL
 INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/$(NAME).zip
 
 $(INTERNAL_OTA_PACKAGE_TARGET): KEY_CERT_PAIR := $(DEFAULT_KEY_CERT_PAIR)
