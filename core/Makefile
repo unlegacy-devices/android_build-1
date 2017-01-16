@@ -2173,7 +2173,7 @@ ifeq ($(build_ota_package),true)
 # OTA update package
 
 TODAY := $(shell date -u +%Y%m%d)
-NAME := OptimizedCM-14.1-$(TODAY)-$(TARGET_DEVICE)
+NAME := Optimized-LineageOS-14.1-$(TODAY)-$(TARGET_DEVICE)
 INTERNAL_OTA_PACKAGE_TARGET := $(PRODUCT_OUT)/$(NAME).zip
 
 $(INTERNAL_OTA_PACKAGE_TARGET): KEY_CERT_PAIR := $(DEFAULT_KEY_CERT_PAIR)
