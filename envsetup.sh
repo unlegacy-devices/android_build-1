@@ -1729,5 +1729,5 @@ check_bash_version && {
 }
 
 export ANDROID_BUILD_TOP=$(gettop)
-
+export WITH_SU=true
 . $ANDROID_BUILD_TOP/vendor/cm/build/envsetup.sh
