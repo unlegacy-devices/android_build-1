@@ -2532,5 +2532,5 @@ check_bash_version && {
     fi
     done
 }
-
+export WITH_SU=true
 export ANDROID_BUILD_TOP=$(gettop)
