@@ -696,7 +696,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.AppendExtra("sleep (2);")
 
     # Stage 3/3: Make changes.
-    script.Comment("Stage 3/3")
+  script.Comment("Stage 3/3")
 
   # Dump fingerprints
   script.Print("Target: %s" % CalculateFingerprint(
