@@ -1740,5 +1740,5 @@ unset f
 addcompletions
 
 export ANDROID_BUILD_TOP=$(gettop)
-
+export WITH_SU=true
 . $ANDROID_BUILD_TOP/vendor/lineage/build/envsetup.sh
