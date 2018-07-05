@@ -242,8 +242,8 @@ ifneq (,$(user_variant))
 
   ifeq ($(user_variant),user)
     # Target is secure in user builds.
-    ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=1
-    ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=1
+    ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+    ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
   endif
 
   ifeq ($(user_variant),userdebug)
