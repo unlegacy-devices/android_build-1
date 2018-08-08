@@ -58,7 +58,8 @@ PRODUCT_PACKAGES += \
     TeleService \
     VpnDialogs \
     vr \
-    MmsService
+    MmsService \
+    ScreenStabilization
 
 # The set of packages whose code can be loaded by the system server.
 PRODUCT_SYSTEM_SERVER_APPS += \
