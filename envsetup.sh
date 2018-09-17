@@ -30,6 +30,7 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 - gomod:      Go to the directory containing a module.
 - pathmod:    Get the directory containing a module.
 - refreshmod: Refresh list of modules for allmod/gomod.
+- repofastsync: Parallel & superfast repo sync using ionice and SCHED_BATCH, and a bit of black magic
 
 EOF
 
@@ -1444,6 +1445,18 @@ function gomod() {
 function _complete_android_module_names() {
     local word=${COMP_WORDS[COMP_CWORD]}
     COMPREPLY=( $(allmod | grep -E "^$word") )
+}
+
+
+function repofastsync() {
+    case `uname -s` in
+        Darwin)
+            repo sync -c -f --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            ;;
+        *)
+            schedtool -B -n 1 -e ionice -n 1 `which repo` sync -c -f --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            ;;
+    esac
 }
 
 # Print colored exit condition
