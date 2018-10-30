@@ -827,6 +827,14 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print(" ")
   script.Print("Optimized LineageOS 16.0")
   script.Print(" ")
+  romname = target_info.GetBuildProp("ro.lineage.version")
+  builddate = target_info.GetBuildProp("ro.build.date")
+  script.Print("--------------------------------------")
+  script.Print(" ")
+  script.Print("ROM Version:")
+  script.Print("%s "%(romname));
+  script.Print("Build Date:")
+  script.Print("%s "%(builddate));
 
   script.AppendExtra("ifelse(is_mounted(\"/system\"), unmount(\"/system\"));")
   device_specific.FullOTA_InstallBegin()
