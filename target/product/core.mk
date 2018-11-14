@@ -34,7 +34,6 @@ PRODUCT_PACKAGES += \
     DeskClock \
     DocumentsUI \
     DownloadProviderUi \
-    Email \
     ExactCalculator \
     ExternalStorageProvider \
     FusedLocation \
@@ -58,7 +57,6 @@ PRODUCT_PACKAGES += \
     StorageManager \
     Telecom \
     TeleService \
-    Traceur \
     VpnDialogs \
     vr \
     MmsService
