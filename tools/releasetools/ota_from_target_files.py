@@ -836,7 +836,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   script.Print("----------------------------------------------");
   script.Print("              Pixel Experience");
-  script.Print("               by jhenrique09");
+  script.Print("             Rom by jhenrique09");
+  script.Print("*      S4 version by Buff99 / JDC Team");
   script.Print("----------------------------------------------");
   script.Print(" Android version: %s"%(android_version));
   script.Print(" Build id: %s"%(build_id));
