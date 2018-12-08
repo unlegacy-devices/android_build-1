@@ -830,6 +830,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("**********************************************");
   script.Print("* Liquid Remix for %s             *"%(model));
   script.Print("* Compiled on: %s  *"%(build));
+  script.Print("*       S4 version:- Buff99 / JDC Team       *");
   script.Print("**********************************************");
   device_specific.FullOTA_InstallBegin()
 
