@@ -33,6 +33,7 @@ PRODUCT_PACKAGES += \
     DeskClock \
     DocumentsUI \
     DownloadProviderUi \
+    Email \
     ExactCalculator \
     ExternalStorageProvider \
     FusedLocation \
