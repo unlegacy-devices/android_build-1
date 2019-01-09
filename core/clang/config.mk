@@ -1,5 +1,44 @@
 ## Clang configurations.
 
+# Start optimizations
+OPT_CLANG_UNKNOWN_FLAGS := \
+  -mvectorize-with-neon-double \
+  -mvectorize-with-neon-quad \
+  -fgcse-after-reload \
+  -fgcse-las \
+  -fgcse-sm \
+  -fgraphite \
+  -fgraphite-identity \
+  -fipa-pta \
+  -floop-block \
+  -floop-interchange \
+  -floop-nest-optimize \
+  -floop-parallelize-all \
+  -ftree-parallelize-loops=2 \
+  -ftree-parallelize-loops=4 \
+  -ftree-parallelize-loops=8 \
+  -ftree-parallelize-loops=16 \
+  -floop-strip-mine \
+  -fmodulo-sched \
+  -fmodulo-sched-allow-regmoves \
+  -frerun-cse-after-loop \
+  -frename-registers \
+  -fsection-anchors \
+  -ftree-loop-im \
+  -ftree-loop-ivcanon \
+  -funsafe-loop-optimizations \
+  -fweb
+
+CLANG_CONFIG_EXTRA_CFLAGS += -O3 -Qunused-arguments -Wno-unknown-warning-option
+CLANG_CONFIG_EXTRA_CPPFLAGS += -O3 -Qunused-arguments -Wno-unknown-warning-option
+CLANG_CONFIG_EXTRA_LDFLAGS += -Wl,--sort-common
+
+# Filter out
+CLANG_CONFIG_EXTRA_CFLAGS := $(filter-out $(OPT_CLANG_UNKNOWN_FLAGS),$(CLANG_CONFIG_EXTRA_CFLAGS))
+CLANG_CONFIG_EXTRA_CPPFLAGS := $(filter-out $(OPT_CLANG_UNKNOWN_FLAGS),$(CLANG_CONFIG_EXTRA_CPPFLAGS))
+
+# end of optimizations
+
 LLVM_RTLIB_PATH := $(LLVM_PREBUILTS_PATH)/../lib64/clang/$(LLVM_RELEASE_VERSION)/lib/linux/
 
 CLANG_TBLGEN := $(BUILD_OUT_EXECUTABLES)/clang-tblgen$(BUILD_EXECUTABLE_SUFFIX)
