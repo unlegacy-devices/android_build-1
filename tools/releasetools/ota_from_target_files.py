@@ -866,6 +866,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print(" R::::::R     R:::::R  R::::::R     R:::::R")
   script.Print(" RRRRRRRR     RRRRRRR  RRRRRRRR     RRRRRRR")
   script.Print("");
+  script.Print("       S4 version:- Buff99 / JDC Team      ");
+  script.Print("");
 
 
   build = target_info.GetBuildProp("ro.build.date")
@@ -880,7 +882,7 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   manufacturer = target_info.GetBuildProp("ro.product.manufacturer")
   maintainer = target_info.GetBuildProp("ro.build.user")
   sdkver = target_info.GetBuildProp("ro.build.version.sdk")
-  
+
   script.Print(" **************** Information *****************");
   script.Print(" OS ver: %s"%(buildid));
   script.Print("");
