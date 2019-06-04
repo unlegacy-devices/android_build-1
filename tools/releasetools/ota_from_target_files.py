@@ -854,6 +854,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("                                                   ");
   script.Print("                   AOSP Pie                        ");
   script.Print("          A Ground Zero Roms Project               ");
+  script.Print("***************************************************")
+  script.Print("*       S4 version - Buff99 / JDC Team            *")
   script.Print("***************************************************");
 
   if OPTIONS.wipe_user_data:
