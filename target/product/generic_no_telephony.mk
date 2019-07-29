@@ -31,7 +31,6 @@ PRODUCT_PACKAGES := \
     DisplayCutoutEmulationDoubleOverlay \
     DisplayCutoutEmulationCornerOverlay \
     DisplayCutoutEmulationTallOverlay \
-    EasterEgg \
     WallpaperCropper
 
 PRODUCT_PACKAGES += \

@@ -17,27 +17,19 @@
 PRODUCT_PROPERTY_OVERRIDES :=
 
 PRODUCT_PACKAGES := \
-	CellBroadcastReceiver \
-	CubeLiveWallpapers \
 	CustomLocale \
-	Development \
 	Dialer \
 	Gallery2 \
-	Launcher3QuickStep \
-	Camera2 \
 	librs_jni \
-	LiveWallpapersPicker \
 	Mms \
 	Music \
 	Protips \
 	rild \
-	screenrecord \
 	SdkSetup \
 	SoftKeyboard \
 	sqlite3 \
 	SystemUI \
 	SysuiDarkThemeOverlay \
-	EasterEgg \
 	WallpaperPicker \
 	WidgetPreview \
 
