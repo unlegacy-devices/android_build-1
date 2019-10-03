@@ -906,14 +906,20 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
 
   android_version = target_info.GetBuildProp("ro.build.version.release")
   build_id = target_info.GetBuildProp("ro.build.id")
-  build_date = target_info.GetBuildProp("org.pixelexperience.build_date")
+  build_date = target_info.GetBuildProp("org.evolution.build_date")
   security_patch = target_info.GetBuildProp("ro.build.version.security_patch")
-  device = target_info.GetBuildProp("org.pixelexperience.device")
+  device = target_info.GetBuildProp("org.evolution.device")
 
-  script.Print("----------------------------------------------");
-  script.Print("              Pixel Experience");
-  script.Print("               by jhenrique09");
-  script.Print("----------------------------------------------");
+  script.Print("----------------------------------------------------");
+  script.Print("    ______            __      __  _            _  __");
+  script.Print("   / ____/   ______  / /_  __/ /_(_)___  ____ | |/ /");
+  script.Print("  / __/ | | / / __ \/ / / / / __/ / __ \/ __ \|   / ");
+  script.Print(" / /___ | |/ / /_/ / / /_/ / /_/ / /_/ / / / /   |  ");
+  script.Print("/_____/ |___/\____/_/\__,_/\__/_/\____/_/ /_/_/|_|  ");
+  script.Print("                                                    ");
+  script.Print("      by Stallix, RealAkito, AnierinB, Hugwalk      ");
+  script.Print("            & the whole Evolution X team            ");
+  script.Print("----------------------------------------------------");
   script.Print(" Android version: %s"%(android_version));
   script.Print(" Build id: %s"%(build_id));
   script.Print(" Build date: %s"%(build_date));
