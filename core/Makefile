@@ -393,6 +393,8 @@ else
   BUILD_DISPLAY_ID := $(build_desc)
 endif
 
+ BUILD_DISPLAY_ID := Optimized-LineageOS-18.0-Version-$(OPTIMIZED_LINEAGEOS_VERSION)
+
 # Accepts a whitespace separated list of product locales such as
 # (en_US en_AU en_GB...) and returns the first locale in the list with
 # underscores replaced with hyphens. In the example above, this will
