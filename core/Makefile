@@ -4866,6 +4866,7 @@ deps := \
 	$(target_notice_file_txt) \
 	$(tools_notice_file_txt) \
 	$(OUT_DOCS)/offline-sdk-timestamp \
+	$(SDK_METADATA_FILES) \
 	$(SYMBOLS_ZIP) \
 	$(COVERAGE_ZIP) \
 	$(APPCOMPAT_ZIP) \
