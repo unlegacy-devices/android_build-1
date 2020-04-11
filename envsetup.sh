@@ -1472,12 +1472,22 @@ function repofirstsync() {
         Darwin)
             repo init -u https://github.com/Evolution-X/manifest -b ten "$@"
             repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            if [[ $? != 0 ]]
+            then
+                echo "Failed to repo sync! Please try again, might want to scroll up for logs above :D"
+                return
+            fi
             echo "Please . build/envsetup.sh again and repofastsync again to complete the sync :D"
             rm -rf $(pwd)/build
             ;;
         *)
             schedtool -B -n 1 -e ionice -n 1 `which repo` init -u https://github.com/Evolution-X/manifest -b ten  "$@"
             schedtool -B -n 1 -e ionice -n 1 `which repo` sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            if [[ $? != 0 ]]
+            then
+                echo "Failed to repo sync! Please try again, might want to scroll up for logs above :D"
+                return
+            fi
             echo "Please . build/envsetup.sh again and repofastsync again to complete the sync :D"
             rm -rf $(pwd)/build
             ;;
@@ -1507,10 +1517,20 @@ function reposync() {
         Darwin)
             repo init -u https://github.com/Evolution-X/manifest -b ten "$@"
             repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            if [[ $? != 0 ]]
+            then
+                echo "Failed to repo sync! Please try again, might want to scroll up for logs above :D"
+                return
+            fi
             ;;
         *)
             schedtool -B -n 1 -e ionice -n 1 `which repo` init -u https://github.com/Evolution-X/manifest -b ten  "$@"
             schedtool -B -n 1 -e ionice -n 1 `which repo` sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            if [[ $? != 0 ]]
+            then
+                echo "Failed to repo sync! Please try again, might want to scroll up for logs above :D"
+                return
+            fi
             ;;
     esac
 }
