@@ -1449,6 +1449,24 @@ function _complete_android_module_names() {
 
 
 function repofastsync() {
+    command -v repo > /dev/null
+    if [[ $? != 0 ]]
+    then
+        echo "repo not found in your system, you might wanted to install it."
+        echo -e "Install repo? (y/n) \c"
+        read
+        if [ "$REPLY" = "y" ]
+        then
+           mkdir $(pwd)/bin
+           export PATH=$(pwd)/bin:$PATH
+           curl https://storage.googleapis.com/git-repo-downloads/repo > $(pwd)/bin/repo
+           chmod a+x $(pwd)/bin/repo
+        else
+           echo "Selected no... Aborting, not letting sync happen."
+           return
+        fi
+    fi
+
     case `uname -s` in
         Darwin)
             repo init -u https://github.com/Evolution-X/manifest -b ten "$@"
