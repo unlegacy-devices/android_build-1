@@ -32,7 +32,8 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 - refreshmod: Refresh list of modules for allmod/gomod.
 - repofirstsync: FIRST TIME SYNC ONLY. Parallel & superfast repo sync using ionice and SCHED_BATCH, and a bit of black magic, intended for ten branch.
 - reposync: Parallel & superfast repo sync using ionice and SCHED_BATCH, and a bit of black magic, intended for ten branch.
-
+- updaterepo: Either your repo provided by your distribution is too outdated or you are too lazy to update the thing. This command will do the job.
+- updaterepopath: Permanently add repo path to the shell rc.
 
 EOF
 
@@ -1462,6 +1463,7 @@ function repofirstsync() {
            export PATH=$(pwd)/bin:$PATH
            curl https://storage.googleapis.com/git-repo-downloads/repo -o $(pwd)/bin/repo > /dev/null
            chmod a+x $(pwd)/bin/repo
+           echo "Installed repo, you're required to run 'updaterepopath' to update your PATH permanently, you can update it via 'updaterepo' "
         else
            echo "Selected no... Aborting, not letting sync happen."
            return
@@ -1507,6 +1509,7 @@ function reposync() {
            export PATH=$(pwd)/bin:$PATH
            curl https://storage.googleapis.com/git-repo-downloads/repo -o $(pwd)/bin/repo > /dev/null
            chmod a+x $(pwd)/bin/repo
+           echo "Installed repo, you're required to run 'updaterepopath' to update your PATH permanently, you can update it via 'updaterepo' "
         else
            echo "Selected no... Aborting, not letting sync happen."
            return
@@ -1533,6 +1536,42 @@ function reposync() {
             fi
             ;;
     esac
+}
+
+function updaterepo() {
+    command -v repo > /dev/null
+    if [[ $? != 0 ]]
+    then
+        echo "repo not found in your system, you might wanted to install it."
+        echo -e "Install repo? (y/n) \c"
+        read
+        if [ "$REPLY" = "y" ]
+        then
+           mkdir $(pwd)/bin
+           export PATH=$(pwd)/bin:$PATH
+           curl https://storage.googleapis.com/git-repo-downloads/repo -o $(pwd)/bin/repo > /dev/null
+           chmod a+x $(pwd)/bin/repo
+           echo "repo installed, you might want to run 'updaterepopath' to permanently update the repo path."
+        else
+           echo "Selected no... Aborting, not updating repo."
+           return
+        fi
+    fi
+}
+
+function updaterepopath() {
+if [ -n "`$SHELL -c 'echo $ZSH_VERSION'`" ]; then
+  echo "BASH shell detected, adding PATH to ~/.zshrc"
+  echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.zshrc
+  return
+elif [ -n "`$SHELL -c 'echo $BASH_VERSION'`" ]; then
+  echo "BASH shell detected, adding PATH to ~/.bashrc"
+  echo "export PATH=$(pwd)/bin:\$PATH" >> ~/.bashrc
+  return
+else
+  echo "Shell not supported, manually add 'export PATH=$(pwd)/bin:\$PATH' to your shell's rc yourself"
+  return
+fi
 }
 
 # Print colored exit condition
