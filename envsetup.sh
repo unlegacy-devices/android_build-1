@@ -30,7 +30,9 @@ Invoke ". build/envsetup.sh" from your shell to add the following functions to y
 - gomod:      Go to the directory containing a module.
 - pathmod:    Get the directory containing a module.
 - refreshmod: Refresh list of modules for allmod/gomod.
-- repofastsync: Parallel & superfast repo sync using ionice and SCHED_BATCH, and a bit of black magic, intended for ten branch.
+- repofirstsync: FIRST TIME SYNC ONLY. Parallel & superfast repo sync using ionice and SCHED_BATCH, and a bit of black magic, intended for ten branch.
+- reposync: Parallel & superfast repo sync using ionice and SCHED_BATCH, and a bit of black magic, intended for ten branch.
+
 
 EOF
 
@@ -1447,8 +1449,42 @@ function _complete_android_module_names() {
     COMPREPLY=( $(allmod | grep -E "^$word") )
 }
 
+function repofirstsync() {
+    command -v repo > /dev/null
+    if [[ $? != 0 ]]
+    then
+        echo "repo not found in your system, you might wanted to install it."
+        echo -e "Install repo? (y/n) \c"
+        read
+        if [ "$REPLY" = "y" ]
+        then
+           mkdir $(pwd)/bin
+           export PATH=$(pwd)/bin:$PATH
+           curl https://storage.googleapis.com/git-repo-downloads/repo > $(pwd)/bin/repo
+           chmod a+x $(pwd)/bin/repo
+        else
+           echo "Selected no... Aborting, not letting sync happen."
+           return
+        fi
+    fi
 
-function repofastsync() {
+    case `uname -s` in
+        Darwin)
+            repo init -u https://github.com/Evolution-X/manifest -b ten "$@"
+            repo sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            echo "Please . build/envsetup.sh again and repofastsync again to complete the sync :D"
+            rm -rf $(pwd)/build
+            ;;
+        *)
+            schedtool -B -n 1 -e ionice -n 1 `which repo` init -u https://github.com/Evolution-X/manifest -b ten  "$@"
+            schedtool -B -n 1 -e ionice -n 1 `which repo` sync -c --force-sync --optimized-fetch --no-tags --no-clone-bundle --prune -j$(nproc --all) "$@"
+            echo "Please . build/envsetup.sh again and repofastsync again to complete the sync :D"
+            rm -rf $(pwd)/build
+            ;;
+    esac
+}
+
+function reposync() {
     command -v repo > /dev/null
     if [[ $? != 0 ]]
     then
