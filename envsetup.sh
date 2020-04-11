@@ -1460,7 +1460,7 @@ function repofirstsync() {
         then
            mkdir $(pwd)/bin
            export PATH=$(pwd)/bin:$PATH
-           curl https://storage.googleapis.com/git-repo-downloads/repo > $(pwd)/bin/repo
+           curl https://storage.googleapis.com/git-repo-downloads/repo -o $(pwd)/bin/repo > /dev/null
            chmod a+x $(pwd)/bin/repo
         else
            echo "Selected no... Aborting, not letting sync happen."
@@ -1477,7 +1477,7 @@ function repofirstsync() {
                 echo "Failed to repo sync! Please try again, might want to scroll up for logs above :D"
                 return
             fi
-            echo "Please . build/envsetup.sh again and repofastsync again to complete the sync :D"
+            echo "Please . build/envsetup.sh again and type 'reposync' to complete the sync :D"
             rm -rf $(pwd)/build
             ;;
         *)
@@ -1488,7 +1488,7 @@ function repofirstsync() {
                 echo "Failed to repo sync! Please try again, might want to scroll up for logs above :D"
                 return
             fi
-            echo "Please . build/envsetup.sh again and repofastsync again to complete the sync :D"
+            echo "Please . build/envsetup.sh again and type 'reposync' to complete the sync :D"
             rm -rf $(pwd)/build
             ;;
     esac
@@ -1505,7 +1505,7 @@ function reposync() {
         then
            mkdir $(pwd)/bin
            export PATH=$(pwd)/bin:$PATH
-           curl https://storage.googleapis.com/git-repo-downloads/repo > $(pwd)/bin/repo
+           curl https://storage.googleapis.com/git-repo-downloads/repo -o $(pwd)/bin/repo > /dev/null
            chmod a+x $(pwd)/bin/repo
         else
            echo "Selected no... Aborting, not letting sync happen."
