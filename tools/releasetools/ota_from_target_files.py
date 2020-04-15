@@ -940,6 +940,8 @@ else if get_stage("%(bcb_dev)s") == "3/3" then
   script.Print("      by Stallix, RealAkito, AnierinB, Hugwalk      ");
   script.Print("            & the whole Evolution X team            ");
   script.Print("----------------------------------------------------");
+  script.Print("           S4 version by Buff99 / JDCTeam           ");
+  script.Print("----------------------------------------------------");
   script.Print(" Android version: %s"%(android_version));
   script.Print(" Build id: %s"%(build_id));
   script.Print(" Build date: %s"%(build_date));

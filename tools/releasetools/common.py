@@ -1994,7 +1994,7 @@ class BlockDifference(object):
                   write_verify_script=False):
     if not self.src:
       # write the output unconditionally
-      script.Print("Patching %s image unconditionally..." % (self.partition,))
+      script.Print("Where's your warranty dude?")
     else:
       script.Print("Patching %s image after verification." % (self.partition,))
 
